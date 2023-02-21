@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>Koi的学习之路</title>
+        <link>http://example.com</link>
+        <description></description>
+        <language>zh-CN</language>
+        <pubDate>Sun, 19 Feb 2023 21:37:00 +0800</pubDate>
+        <lastBuildDate>Sun, 19 Feb 2023 21:37:00 +0800</lastBuildDate>
+        <category>数据结构</category>
+        <item>
+            <guid isPermalink="true">http://example.com/2023/02/19/datastructure-algorithms/datastructure3/</guid>
+            <title>数据结构【逻辑结构篇】</title>
+            <link>http://example.com/2023/02/19/datastructure-algorithms/datastructure3/</link>
+            <category>数据结构</category>
+            <pubDate>Sun, 19 Feb 2023 21:37:00 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;栈&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#栈&#34;&gt;#&lt;/a&gt; 栈&lt;/h1&gt;
+&lt;p&gt;栈是线性数据结构，元素在其中只能先进后出，就像一端封闭一端开放的圆筒形容器&lt;br /&gt;
+最早进入的元素叫做栈底&lt;span class=&#34;label info&#34;&gt; bottom&lt;/span&gt;，最后的元素叫做栈顶&lt;span class=&#34;label info&#34;&gt; top&lt;/span&gt;&lt;br /&gt;
+ 只有栈顶才能入栈&lt;span class=&#34;label info&#34;&gt; push&lt;/span&gt;、出栈&lt;span class=&#34;label info&#34;&gt; pop&lt;/span&gt;&lt;/p&gt;
+&lt;h2 id=&#34;总结&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#总结&#34;&gt;#&lt;/a&gt; 总结&lt;/h2&gt;
+&lt;p&gt;栈的输出顺序与输入顺序相反，适合用与回溯，例如递归操作返回上一级递归、面包屑导航&lt;br /&gt;
+&lt;img data-src=&#34;breadcrumb.png&#34; alt=&#34;breadcrumb&#34; title=&#34;面包屑导航&#34; /&gt;&lt;/p&gt;
+&lt;h1 id=&#34;队列&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#队列&#34;&gt;#&lt;/a&gt; 队列&lt;/h1&gt;
+&lt;p&gt;队列也是线性数据结构，元素在其中只能先入先出，就像现实中的隧道&lt;br /&gt;
+队列的出口端叫做队头&lt;span class=&#34;label info&#34;&gt; front&lt;/span&gt;，入口端叫队尾&lt;span class=&#34;label info&#34;&gt; rear&lt;/span&gt;，队尾指针指向的位置必须空出一位&lt;br /&gt;
+元素只能在队尾入队&lt;span class=&#34;label info&#34;&gt; enqueue&lt;/span&gt;、队头出队&lt;span class=&#34;label info&#34;&gt; dequeue&lt;/span&gt; 时间复杂度 O (1)&lt;/p&gt;
+&lt;h2 id=&#34;循环队列&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#循环队列&#34;&gt;#&lt;/a&gt; 循环队列&lt;/h2&gt;
+&lt;p&gt;当队列使用数组实现时，不断进行入、出队操作，就会面临空间不足的情况，循环队列可以解决这个问题，并且不用扩容数组&lt;br /&gt;
+只需将队尾放到数组的首位，重新利用先前出队的空间&lt;br /&gt;
+当&lt;span class=&#34;pink&#34;&gt; (队尾下标 + 1) % 数组长度 = 队头下标&lt;/span&gt;时，说明队列已满&lt;br /&gt;
+&lt;img data-src=&#34;circularqueue.gif&#34; alt=&#34;circularqueue&#34; title=&#34;循环队列&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;双端队列&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#双端队列&#34;&gt;#&lt;/a&gt; 双端队列&lt;/h2&gt;
+&lt;h2 id=&#34;优先队列&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#优先队列&#34;&gt;#&lt;/a&gt; 优先队列&lt;/h2&gt;
+&lt;h2 id=&#34;总结-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#总结-2&#34;&gt;#&lt;/a&gt; 总结&lt;/h2&gt;
+&lt;p&gt;队列的输出顺序和输入顺序相同，经常用于现实中的排队系统&lt;/p&gt;
+&lt;h1 id=&#34;散列表哈希表&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#散列表哈希表&#34;&gt;#&lt;/a&gt; 散列表 (哈希表)&lt;/h1&gt;
+&lt;p&gt;散列表是 hash 结构，由&lt;span class=&#34;label info&#34;&gt; Key&lt;/span&gt; 和&lt;span class=&#34;label info&#34;&gt; Valve&lt;/span&gt; 组成，通过对&lt;span class=&#34;label info&#34;&gt; Key&lt;/span&gt; 进行 hash 计算出&lt;span class=&#34;label info&#34;&gt; Value&lt;/span&gt; 在数组中的下标位置&lt;br /&gt;
+&lt;span class=&#34;pink&#34;&gt; index = HashCode (Key) % Array.length&lt;/span&gt;&lt;/p&gt;
+&lt;h2 id=&#34;哈希冲突&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#哈希冲突&#34;&gt;#&lt;/a&gt; 哈希冲突&lt;/h2&gt;
+&lt;p&gt;由于数组的长度是有限的，就会有 hash 冲突的情况，主要有两种方法解决这种问题&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;开放寻址法：当写入的位置已经有元素时，往后寻找空位写入&lt;/li&gt;
+&lt;li&gt;链表法：每一个元素都是一个链表的头节点，只需要用 next 指针指向要被写入的冲突的元素即可（HashMap 应用了此方法）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;扩容&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#扩容&#34;&gt;#&lt;/a&gt; 扩容&lt;/h2&gt;
+&lt;p&gt;既然使用数组实现，那么就会涉及到扩容问题，虽然链表法可以一直往下延伸，但这会大大影响效率，在 HashMap 中判断需要扩容的条件是&lt;span class=&#34;pink&#34;&gt; HashMap.Size &amp;gt;= Capacity*LoadFactor&lt;/span&gt;，&lt;span class=&#34;lable info&#34;&gt;Capacity&lt;/span&gt; 指 HashMap 当前长度，&lt;span class=&#34;lable info&#34;&gt;LoadFactor&lt;/span&gt; 指 HashMap 的负载因子，默认为 0.75f&lt;br /&gt;
+ 和数组扩容一样，先创建原数组两倍的新数组，不过要重新进行 hash 计算，因为数组长度发生了变化，先前计算得出的下标已经不再适用于新数组&lt;/p&gt;
+&lt;h1 id=&#34;树&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#树&#34;&gt;#&lt;/a&gt; 树&lt;/h1&gt;
+&lt;p&gt;树&lt;span class=&#34;label info&#34;&gt; tree&lt;/span&gt; 是 n (n&amp;gt;=0) 个节点的有限集。当 n=0 时，称为空树&lt;br /&gt;
+非空树有以下特点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;有且仅有一个称为根的节点&lt;span class=&#34;label info&#34;&gt; root&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;当 n&amp;gt;1 时，其余节点可分为 m (m&amp;gt;0) 个互不相交的有限集，每一个集合本身又是一个树，并称为根的子树&lt;br /&gt;
+没有孩子的节点是树的末端，称做叶子节点&lt;span class=&#34;label info&#34;&gt; leaf&lt;/span&gt;&lt;br /&gt;
+ 一个节点的上一级节点，是这个节点的父节点&lt;span class=&#34;label info&#34;&gt; parent&lt;/span&gt;，从这个节点衍生出来的节点，是这个节点的孩子节点&lt;span class=&#34;label info&#34;&gt; child&lt;/span&gt;，和这个节点同级，同一个父节点衍生出来的节点是这个节点的兄弟节点&lt;span class=&#34;label info&#34;&gt; sibling&lt;/span&gt;&lt;br /&gt;
+ 树的最大层级数，称为树的高度和深度&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;二叉树&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#二叉树&#34;&gt;#&lt;/a&gt; 二叉树&lt;/h2&gt;
+&lt;p&gt;二叉树中的每一个节点最多能有两个孩子节点，也可以只有一个，或者没有。一个叫做左孩子&lt;span class=&#34;label info&#34;&gt; leftChild&lt;/span&gt;，一个叫做右孩子&lt;span class=&#34;label info&#34;&gt; rightChild&lt;/span&gt;，它们的顺序是固定和，如同名字一样&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;满二叉树：一个二叉树的每一个非叶子节点都有两个孩子节点，并且所有叶子节点都在同一层级&lt;/li&gt;
+&lt;li&gt;完全二叉树：完全二叉树的所有节点和同样高度的满二叉树的节点位置相同，仅要求最后一个节点之前的节点满分支即可&lt;/li&gt;
+&lt;/ul&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://example.com/2023/02/18/datastructure-algorithms/datastructure2/</guid>
+            <title>数据结构【物理结构篇】</title>
+            <link>http://example.com/2023/02/18/datastructure-algorithms/datastructure2/</link>
+            <category>数据结构</category>
+            <pubDate>Sat, 18 Feb 2023 21:45:00 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;数组&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#数组&#34;&gt;#&lt;/a&gt; 数组&lt;/h1&gt;
+&lt;p&gt;数组在内存中是按顺序存储的，数组内每个元素都有一个单独的下标，在查找元素时只需要给出对应的下标即可，下标就是一个数字，从第一个元素为 0 逐次增加，这叫随机读取，读取的时间复杂度只有 O (1)&lt;br /&gt;
+ 数组的长度在创建数组的时候就固定了，所以当长度不够时就只能再创建一个更长的数组再将元素一个个复制过去（Java 是这样的，在 JavaScript 中是动态的可随意增减）扩容的时间复杂度是 O (n)&lt;br /&gt;
+ 由于每个元素是固定下标，所以在数组中作中间插入的操作是繁琐的，需要把要插入的位置的元素包括在这之后的元素一个个往后移，中间删除操作往前移，时间复杂度都是 O (n)&lt;br /&gt;
+ 如果没有顺序要求，中间删除操作可以将最后一个元素复制到要删除元素的位置，然后删除最后一个元素，这样时间复杂度只有 O (2)&lt;/p&gt;
+&lt;h2 id=&#34;总结&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#总结&#34;&gt;#&lt;/a&gt; 总结&lt;/h2&gt;
+&lt;p&gt;数组的随机读取能力强但插入、删除能力会导致大量元素移动，因此数组适合在读操作多，写操作少的情况使用&lt;/p&gt;
+&lt;h1 id=&#34;链表&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#链表&#34;&gt;#&lt;/a&gt; 链表&lt;/h1&gt;
+&lt;h2 id=&#34;单向链表&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#单向链表&#34;&gt;#&lt;/a&gt; 单向链表&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;每一个节点由 data、next 组成，data 为存储的数据，next 指向下一个节点，头节点为 head，尾部节点为 last 且 next 指向 null，因此只能做向下读取的操作&lt;/li&gt;
+&lt;li&gt;链表是随机存储的 (所以需要指针)，在做查找的操作时只能一个一个节点往下找，时间复杂度为 O (n)，但它的长度是动态的&lt;/li&gt;
+&lt;li&gt;头部插入：将新节点的 next 指向第一个节点，然后更新 head 为新节点&lt;/li&gt;
+&lt;li&gt;中间插入：将新节点的 next 指向下一个节点，将上一个节点的 next 指向新节点&lt;/li&gt;
+&lt;li&gt;头部删除：将 head 更新为第二个节点（Java 特性会删除未被使用的数据）&lt;/li&gt;
+&lt;li&gt;中间删除：将上一个节点的 next 指向下一个节点&lt;/li&gt;
+&lt;li&gt;尾部删除：将倒数第二个节点的 next 指向 null&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;双向链表&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#双向链表&#34;&gt;#&lt;/a&gt; 双向链表&lt;/h2&gt;
+&lt;p&gt;和单向链表唯有一点不同，一个节点多包含了 prev，用于指向上一节点&lt;/p&gt;
+&lt;h2 id=&#34;总结-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#总结-2&#34;&gt;#&lt;/a&gt; 总结&lt;/h2&gt;
+&lt;p&gt;如果忽略查找的过程，链表在插入、删除方面上更为灵活，链表适合用于在尾部频繁插入、删除的情况下&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://example.com/2023/02/18/datastructure-algorithms/datastructure1/</guid>
+            <title>数据结构【介绍篇】</title>
+            <link>http://example.com/2023/02/18/datastructure-algorithms/datastructure1/</link>
+            <category>数据结构</category>
+            <pubDate>Sat, 18 Feb 2023 20:35:00 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;物理结构&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#物理结构&#34;&gt;#&lt;/a&gt; 物理结构&lt;/h1&gt;
+&lt;p&gt;存储在内存中的就是物理结构&lt;/p&gt;
+&lt;h2 id=&#34;顺序存储结构&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#顺序存储结构&#34;&gt;#&lt;/a&gt; 顺序存储结构&lt;/h2&gt;
+&lt;p&gt;顺序结构是将连续的数据依次存储在连续的内存中&lt;/p&gt;
+&lt;h2 id=&#34;链式存储结构&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#链式存储结构&#34;&gt;#&lt;/a&gt; 链式存储结构&lt;/h2&gt;
+&lt;p&gt;链式结构是将数据存储在任意的内存中，可以是连续的，也可以是不连续的，每个元素都有指针域和数据域&lt;/p&gt;
+&lt;h2 id=&#34;索引存储结构&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#索引存储结构&#34;&gt;#&lt;/a&gt; 索引存储结构&lt;/h2&gt;
+&lt;p&gt;与链式结构不同的是索引结构没有指针，但创建了索引表存储数据在内存中的地址，对内存消耗大，但查找速度快&lt;/p&gt;
+&lt;h3 id=&#34;索引顺序结构&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#索引顺序结构&#34;&gt;#&lt;/a&gt; 索引顺序结构&lt;/h3&gt;
+&lt;p&gt;每个数据在内存中是连续的&lt;/p&gt;
+&lt;h2 id=&#34;散列结构hash结构&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#散列结构hash结构&#34;&gt;#&lt;/a&gt; 散列结构（hash 结构）&lt;/h2&gt;
+&lt;p&gt;通过计算决定数据在内存中的位置&lt;/p&gt;
+&lt;h1 id=&#34;逻辑结构&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#逻辑结构&#34;&gt;#&lt;/a&gt; 逻辑结构&lt;/h1&gt;
+&lt;p&gt;逻辑结构就是数据之间的关系，一个逻辑结构可以用两种以上的物理结构实现&lt;/p&gt;
+&lt;h2 id=&#34;线性结构&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#线性结构&#34;&gt;#&lt;/a&gt; 线性结构&lt;/h2&gt;
+&lt;p&gt;有唯一的首、尾元素，除了首、尾元素，其他元素都是首尾相接的，是一对一的关系，容易遍历，比如栈、队列、双队列、循环队列、一维数组等&lt;/p&gt;
+&lt;h2 id=&#34;非线性结构&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#非线性结构&#34;&gt;#&lt;/a&gt; 非线性结构&lt;/h2&gt;
+&lt;p&gt;非线性结构是一对多或者多对一的关系，需要多次运行才能完全遍历，比如二维数组、多维数组、广义表、树、二叉树等&lt;/p&gt;
+&lt;h2 id=&#34;集合&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#集合&#34;&gt;#&lt;/a&gt; 集合&lt;/h2&gt;
+&lt;p&gt;各个数据之间没有任何关系&lt;/p&gt;
+&lt;h1 id=&#34;总结&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#总结&#34;&gt;#&lt;/a&gt; 总结&lt;/h1&gt;
+&lt;p&gt;逻辑结构是面向问题的，物理结构是面向计算机的，其目的是将数据及其逻辑关系存储在内存中&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>
