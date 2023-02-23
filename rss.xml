@@ -2,16 +2,16 @@
 <rss version="2.0">
     <channel>
         <title>Koi的学习之路</title>
-        <link>http://example.com</link>
+        <link>https://isKoi.github.io</link>
         <description></description>
         <language>zh-CN</language>
         <pubDate>Sun, 19 Feb 2023 21:37:00 +0800</pubDate>
         <lastBuildDate>Sun, 19 Feb 2023 21:37:00 +0800</lastBuildDate>
         <category>数据结构</category>
         <item>
-            <guid isPermalink="true">http://example.com/2023/02/19/datastructure-algorithms/datastructure3/</guid>
+            <guid isPermalink="true">https://iskoi.github.io/2023/02/19/datastructure-algorithms/datastructure3/</guid>
             <title>数据结构【逻辑结构篇】</title>
-            <link>http://example.com/2023/02/19/datastructure-algorithms/datastructure3/</link>
+            <link>https://iskoi.github.io/2023/02/19/datastructure-algorithms/datastructure3/</link>
             <category>数据结构</category>
             <pubDate>Sun, 19 Feb 2023 21:37:00 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;栈&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#栈&#34;&gt;#&lt;/a&gt; 栈&lt;/h1&gt;
@@ -65,9 +65,9 @@
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2023/02/18/datastructure-algorithms/datastructure2/</guid>
+            <guid isPermalink="true">https://iskoi.github.io/2023/02/18/datastructure-algorithms/datastructure2/</guid>
             <title>数据结构【物理结构篇】</title>
-            <link>http://example.com/2023/02/18/datastructure-algorithms/datastructure2/</link>
+            <link>https://iskoi.github.io/2023/02/18/datastructure-algorithms/datastructure2/</link>
             <category>数据结构</category>
             <pubDate>Sat, 18 Feb 2023 21:45:00 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;数组&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#数组&#34;&gt;#&lt;/a&gt; 数组&lt;/h1&gt;
@@ -95,9 +95,9 @@
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2023/02/18/datastructure-algorithms/datastructure1/</guid>
+            <guid isPermalink="true">https://iskoi.github.io/2023/02/18/datastructure-algorithms/datastructure1/</guid>
             <title>数据结构【介绍篇】</title>
-            <link>http://example.com/2023/02/18/datastructure-algorithms/datastructure1/</link>
+            <link>https://iskoi.github.io/2023/02/18/datastructure-algorithms/datastructure1/</link>
             <category>数据结构</category>
             <pubDate>Sat, 18 Feb 2023 20:35:00 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;物理结构&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#物理结构&#34;&gt;#&lt;/a&gt; 物理结构&lt;/h1&gt;
