@@ -94,7 +94,7 @@
  只有栈顶才能入栈 &lt;code&gt;push&lt;/code&gt; 、出栈 &lt;code&gt;pop&lt;/code&gt;&lt;/p&gt;
 &lt;h2 id=&#34;总结&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#总结&#34;&gt;#&lt;/a&gt; 总结&lt;/h2&gt;
 &lt;p&gt;栈的输出顺序与输入顺序相反，适合用于回溯，例如递归操作返回上一级递归、面包屑导航&lt;br /&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;breadcrumb.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;https://s2.loli.net/2024/12/05/ey896rswNlhfuMj.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;h1 id=&#34;队列&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#队列&#34;&gt;#&lt;/a&gt; 队列&lt;/h1&gt;
 &lt;p&gt;队列也是线性数据结构，元素在其中只能先入先出，就像现实中的隧道&lt;br /&gt;
 队列的出口端叫做队头 &lt;code&gt;front&lt;/code&gt; ，入口端叫队尾 &lt;code&gt;rear&lt;/code&gt; ，队尾指针指向的位置必须空出一位&lt;br /&gt;
@@ -103,7 +103,7 @@
 &lt;p&gt;当队列使用数组实现时，不断进行入、出队操作，就会面临空间不足的情况，循环队列可以解决这个问题，并且不用扩容数组&lt;br /&gt;
 只需将队尾放到数组的首位，重新利用先前出队的空间&lt;br /&gt;
 当&lt;span class=&#34;pink&#34;&gt; (队尾下标 + 1) % 数组长度 = 队头下标&lt;/span&gt;时，说明队列已满&lt;br /&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;circularqueue.gif&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;https://s2.loli.net/2024/12/05/XIUA7SBrW9VNlCo.gif&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;h2 id=&#34;双端队列&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#双端队列&#34;&gt;#&lt;/a&gt; 双端队列&lt;/h2&gt;
 &lt;h2 id=&#34;优先队列&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#优先队列&#34;&gt;#&lt;/a&gt; 优先队列&lt;/h2&gt;
 &lt;h2 id=&#34;总结-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#总结-2&#34;&gt;#&lt;/a&gt; 总结&lt;/h2&gt;
