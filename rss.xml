@@ -63,7 +63,7 @@
             <category term="编译" scheme="https://iskoi.github.com/tags/%E7%BC%96%E8%AF%91/" />
             <pubDate>Fri, 10 Mar 2023 00:00:00 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;安装&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#安装&#34;&gt;#&lt;/a&gt; 安装&lt;/h1&gt;
-&lt;p&gt;官方下载地址&lt;br /&gt;
+&lt;p&gt;&lt;a href=&#34;https://cmake.org/download/&#34;&gt;官方下载地址&lt;/a&gt;&lt;br /&gt;
 根据自己系统和架构下载对应的包&lt;/p&gt;
 &lt;p&gt;选择&lt;span class=&#34;pink&#34;&gt; Add CMake to the system PATH for the current user&lt;/span&gt;，意思是只添加到用户环境变量，另一个就是添加到系统环境变量&lt;/p&gt;
 &lt;p&gt;安装完成后，打开 &lt;code&gt;cmd&lt;/code&gt;  或者 &lt;code&gt;Powershell&lt;/code&gt; , 输入命令&lt;span class=&#34;blue&#34;&gt; cmake --version&lt;/span&gt;&lt;/p&gt;
