@@ -10,8 +10,186 @@
         </author>
         <description></description>
         <language>zh-CN</language>
-        <pubDate>Thu, 23 Mar 2023 00:00:00 +0800</pubDate>
-        <lastBuildDate>Thu, 23 Mar 2023 00:00:00 +0800</lastBuildDate>
+        <pubDate>Mon, 02 Feb 2026 00:00:00 +0800</pubDate>
+        <lastBuildDate>Mon, 02 Feb 2026 00:00:00 +0800</lastBuildDate>
+        <item>
+            <guid isPermalink="true">https://iskoi.github.io/nfc/Mifare%201k/</guid>
+            <title>NFC初探 - Mifare 1K</title>
+            <link>https://iskoi.github.io/nfc/Mifare%201k/</link>
+            <category term="NFC" scheme="https://iskoi.github.io/tags/NFC/" />
+            <category term="射频" scheme="https://iskoi.github.io/tags/%E5%B0%84%E9%A2%91/" />
+            <pubDate>Mon, 02 Feb 2026 00:00:00 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;nfc卡数据结构&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#nfc卡数据结构&#34;&gt;#&lt;/a&gt; NFC 卡数据结构&lt;/h1&gt;
+&lt;p&gt;总 1024 字节，分为 16 个扇区 (Sector 0-15)，一个扇区 4 个块 (Block 0-3)&lt;br /&gt;
+ 0 扇区 0 块通常称为厂商段，前 4 字节为卡的唯一识别码 (UID)，第 5 字节为 BCC 校验位，6 字节为 SAK 码，后两字节为 ATQA 码&lt;br /&gt;
+ 1-2 块为内容块&lt;br /&gt;
+每个扇区的最后一个块，负责访问权限。顺序为：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;KEY A 6 字节&lt;/li&gt;
+&lt;li&gt;访问控制： 4 字节，定义密码 A/B 的读写权限&lt;/li&gt;
+&lt;li&gt;KEY B 6 字节&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;工具&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#工具&#34;&gt;#&lt;/a&gt; 工具&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;MFOC&lt;/li&gt;
+&lt;li&gt;MFCUK&lt;/li&gt;
+&lt;li&gt;libnfc&lt;/li&gt;
+&lt;li&gt;PN532 读卡器&lt;/li&gt;
+&lt;li&gt;CUID 空白卡&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;key-ab破解&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#key-ab破解&#34;&gt;#&lt;/a&gt; KEY A/B 破解&lt;/h1&gt;
+&lt;p&gt;使用 nfc-list 读取卡片信息为&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;nfc-list uses libnfc 1.7.1
+NFC device: pn532_uart:/dev/ttyUSB0 opened
+1 ISO14443A passive target(s) found:
+ISO/IEC 14443A (106 kbps) target:
+    ATQA (SENS_RES): 00  04  
+       UID (NFCID1): xx  xx  xx  xx
+      SAK (SEL_RES): 08  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;SAK 为 08 确认为 &lt;code&gt;Mifare 1K&lt;/code&gt;  卡，使用 &lt;code&gt;mfoc -O montherCard.mfd&lt;/code&gt;  命令尝试使用默认密码破解扇区&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Found NFC reader: PN532 v1.6
+Found MIFARE Classic card:
+UID: XX XX XX XX
+ATQA: 00 04
+SAK: 08
+Type: MIFARE Classic 1K
+
+Found 16 sectors, 64 blocks
+
+Start probing for keys...
+Sector  0: Key A not found
+Sector  0: Key B found: FFFFFFFFFFFF
+Sector  2: Key A not found
+Sector  2: Key B found: FFFFFFFFFFFF
+Sector  3: Key A not found
+Sector  3: Key B found: FFFFFFFFFFFF
+Sector  4: Key A not found
+Sector  4: Key B found: FFFFFFFFFFFF
+Sector  5: Key A not found
+Sector  5: Key B found: FFFFFFFFFFFF
+Sector  6: Key A not found
+Sector  6: Key B found: FFFFFFFFFFFF
+Sector  7: Key A not found
+Sector  7: Key B found: FFFFFFFFFFFF
+Sector  8: Key A not found
+Sector  8: Key B found: FFFFFFFFFFFF
+Sector  9: Key A not found
+Sector  9: Key B found: FFFFFFFFFFFF
+Sector  10: Key A not found
+Sector  10: Key B found: FFFFFFFFFFFF
+Sector  11: Key A not found
+Sector  11: Key B found: FFFFFFFFFFFF
+Sector  12: Key A not found
+Sector  12: Key B found: FFFFFFFFFFFF
+Sector  13: Key A not found
+Sector  13: Key B found: FFFFFFFFFFFF
+Sector  14: Key A not found
+Sector  14: Key B found: FFFFFFFFFFFF
+Sector  15: Key A not found
+Sector  15: Key B found: FFFFFFFFFFFF
+
+Authentication finished with partial success.
+
+Reading blocks...
+Block   0:  xx xx xx xx C1 08 04 00 04 85 AF 0A 9C 0B 54 90
+Block   1:  14 FB 04 FE 77 02 FF FF FF FF FF FF 0F FF FF F1
+Block   2:  FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+Block   3:  00 00 00 00 00 00 FF 07 80 69 FF FF FF FF FF FF
+Block   4:  BC FF FF FF FF FF FF FF FF FF 00 FF FF FF FF FF
+Block   5:  18 40 00 00 00 00 00 00 32 32 C6 21 01 00 00 00
+Block   6:  00 00 00 00 00 00 00 00 14 14 C6 21 01 00 00 00
+Block   7:  00 00 00 00 00 00 FF 07 80 69 FF FF FF FF FF FF
+Block   8:  00 00 00 00 00 00 00 00 14 14 C6 21 01 00 00 00
+Block   9:  00 00 00 00 00 00 00 00 14 14 C6 21 01 00 00 00
+Block   10:  00 00 00 00 00 00 00 00 14 14 C6 21 01 00 00 00
+Block   11:  00 00 00 00 00 00 FF 07 80 69 FF FF FF FF FF FF
+Block   12:  00 00 00 00 00 00 00 00 14 14 C6 21 01 00 00 00
+Block   13:  00 00 00 00 00 00 00 00 14 14 C6 21 01 00 00 00
+Block   14:  FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+Block   15:  00 00 00 00 00 00 FF 07 80 69 FF FF FF FF FF FF
+Block   16:  8D D5 D5 D5 D5 D5 D5 D1 1B 6C 35 18 DE F4 93 E1
+Block   17:  01 01 FF FF FF FF FF FF FE FE FF FF FF FF FF FF
+Block   18:  FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 03
+Block   19:  00 00 00 00 00 00 FF 07 80 69 FF FF FF FF FF FF
+Block   20:  01 01 FF FF FF FF FF FF FE FE FF FF FF FF FF FF
+Block   21:  01 01 FF FF FF FF FF FF FE FE FF FF FF FF FF FF
+Block   22:  01 01 FF FF FF FF FF FF FE FE FF FF FF FF FF FF
+Block   23:  00 00 00 00 00 00 FF 07 80 69 FF FF FF FF FF FF
+Block   24:  01 01 FF FF FF FF FF FF FE FE FF FF FF FF FF FF
+Block   25:  01 01 FF FF FF FF FF FF FE FE FF FF FF FF FF FF
+Block   26:  01 01 FF FF FF FF FF FF FE FE FF FF FF FF FF FF
+Block   27:  00 00 00 00 00 00 FF 07 80 69 FF FF FF FF FF FF
+Block   28:  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block   29:  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block   30:  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block   31:  00 00 00 00 00 00 FF 07 80 69 FF FF FF FF FF FF
+Block   32:  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block   33:  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block   34:  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block   35:  00 00 00 00 00 00 FF 07 80 69 FF FF FF FF FF FF
+Block   36:  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block   37:  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block   38:  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block   39:  00 00 00 00 00 00 FF 07 80 69 FF FF FF FF FF FF
+Block   40:  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block   41:  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block   42:  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block   43:  00 00 00 00 00 00 FF 07 80 69 FF FF FF FF FF FF
+Block   44:  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block   45:  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block   46:  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block   47:  00 00 00 00 00 00 FF 07 80 69 FF FF FF FF FF FF
+Block   48:  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block   49:  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block   50:  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block   51:  00 00 00 00 00 00 FF 07 80 69 FF FF FF FF FF FF
+Block   52:  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block   53:  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block   54:  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block   55:  00 00 00 00 00 00 FF 07 80 69 FF FF FF FF FF FF
+Block   56:  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block   57:  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block   58:  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block   59:  00 00 00 00 00 00 FF 07 80 69 FF FF FF FF FF FF
+Block   60:  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block   61:  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block   62:  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block   63:  00 00 00 00 00 00 FF 07 80 69 FF FF FF FF FF FF
+
+Dumping card to file: montherCard.mfd
+Done.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;0-5 扇区 KEY A 未知，尝试使用 &lt;code&gt;mfcuk -C -R 0:a -v 2 -w 5&lt;/code&gt;  暴力随机破解一小时半未果，使用 &lt;code&gt;mfoc -f keys.txt -O montherCard.mfd&lt;/code&gt;  弱密码字典破解出 0-5 扇区 KEY A 为 &lt;code&gt;123456123456&lt;/code&gt;&lt;/p&gt;
+&lt;h1 id=&#34;数据分析&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#数据分析&#34;&gt;#&lt;/a&gt; 数据分析&lt;/h1&gt;
+&lt;p&gt;拿到多组卡数据对比不同处为 4 块，如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;10楼
+Block   0:  xx xx xx xx C1 08 04 00 04 85 AF 0A 9C 0B 54 90
+Block   1:  14 FB 04 FE 77 02 FF FF FF FF FF FF 0F FF FF F1
+Block   5:  18 40 00 00 00 00 00 00 32 32 C6 21 01 00 00 00
+Block   16: 8D D5 D5 D5 D5 D5 D5 D1 1B 6C 35 18 DE F4 93 E1
+15楼
+Block   0:  xx xx xx xx D6 08 04 00 03 47 5D 43 9D B8 01 90
+Block   1:  14 FB 05 B3 77 01 FF FF FF FF FF FF 0F FF FF F1
+Block   5:  08 04 00 00 00 00 00 00 32 32 C6 21 01 00 00 00
+Block   16: D9 D5 D5 D5 D5 D5 D5 33 DF 77 11 24 8C 9B 51 79
+28楼
+Block   0:  xx xx xx xx 03 08 04 00 04 2B 77 4C 49 06 AA 90
+Block   1:  14 FB 08 2B 77 01 FF FF FF FF FF FF 0F FF FF F1
+Block   5:  08 00 00 20 00 00 00 00 32 32 C6 21 01 00 00 00
+Block   16: FD D5 D5 D5 D5 D5 D5 19 9F C0 0C 72 E2 61 90 F8
+29楼
+Block   0:  xx xx xx xx 1C 08 04 00 05 84 B4 5C 71 A0 65 90
+Block   1:  14 FB 08 4A 77 01 FF FF FF FF FF FF 0F FF FF F1
+Block   5:  08 00 00 10 00 00 00 00 32 32 C6 21 01 00 00 00
+Block   16: CD D5 D5 D5 D5 D5 D5 78 1B 7A 98 53 DA 80 52 8A
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;使用 ic 客栈数据分析软件分析出为 &lt;code&gt;前景2梯控&lt;/code&gt; &lt;br /&gt;
+已知最高层为 29 楼每组卡共有 5 楼物业层权限，10 楼卡多出 4 楼权限，排除 Block0 是 ic 卡信息，搜集网上信息 &lt;code&gt;前景2梯控&lt;/code&gt; 的第 1 块第 2-3 字节为发卡数据代表当前发了几张卡，同时第 1 块数据过多重复，因此排除，因为不可能是按照最高到达楼层存储，排除第 16 块第 0 字节，16 块后面的字节没有重复的地方可能为校验码，故排除&lt;br /&gt;
+已知 10 楼多出 4 楼权限，发现第 1 字节与其他楼层不同点 &lt;code&gt;18&lt;/code&gt; ，数字 8 所有楼层都相同，猜测为 5 楼权限，那么 1 为 4 楼权限，数据 8 和 1 又是如何转换为 5 和 4，xor 不对，算了，问 AI 吧&lt;br /&gt;
+将 18 转换为二进制是 &lt;code&gt;00011000&lt;/code&gt;  第几位代表第几楼，这里代表 4 和 5，由于国外没有第 13 楼，所以 12 楼后的数字要 - 1，因此 15 楼权限 &lt;code&gt;08 04&lt;/code&gt;  转为二进制为 &lt;code&gt;0000100000000100&lt;/code&gt;  代表 5 楼和 14 楼&lt;/p&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">https://iskoi.github.io/reverseEngineering/pyinstaller/pyinstaller1/</guid>
             <title>逆向实战-反编译Pyinstaller打包的exe并进行功能分析</title>
