@@ -1,9 +1,9 @@
 {
     "version": "https://jsonfeed.org/version/1",
     "title": "Koi的学习之路",
-    "subtitle": "",
+    "subtitle": "欢迎来到脚本小子的博客",
     "icon": "https://iskoi.github.io/assets/favicon.ico",
-    "description": "",
+    "description": "什么都感兴趣，什么都不精",
     "home_page_url": "https://iskoi.github.io",
     "items": [
         {

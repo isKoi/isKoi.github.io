@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://iskoi.github.io</id>
     <title>Koi的学习之路</title>
-    <subtitle></subtitle>
+    <subtitle>欢迎来到脚本小子的博客</subtitle>
     <icon>https://iskoi.github.io/assets/favicon.ico</icon>
     <link href="https://iskoi.github.io" />
     <author>

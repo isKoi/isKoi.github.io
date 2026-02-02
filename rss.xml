@@ -2,13 +2,13 @@
 <rss version="2.0">
     <channel>
         <title>Koi的学习之路</title>
-        <subtitle></subtitle>
+        <subtitle>欢迎来到脚本小子的博客</subtitle>
         <icon>https://iskoi.github.io/assets/favicon.ico</icon>
         <link>https://iskoi.github.io</link>
         <author>
           <name>Koi</name>
         </author>
-        <description></description>
+        <description>什么都感兴趣，什么都不精</description>
         <language>zh-CN</language>
         <pubDate>Mon, 02 Feb 2026 00:00:00 +0800</pubDate>
         <lastBuildDate>Mon, 02 Feb 2026 00:00:00 +0800</lastBuildDate>
